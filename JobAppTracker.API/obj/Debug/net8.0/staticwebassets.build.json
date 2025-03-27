@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "v8rucFz63oawEk02rdbnHrngNp5ZK+Q5k7b9WmhDSLo=",
+  "Source": "JobAppTracker.API",
+  "BasePath": "_content/JobAppTracker.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
