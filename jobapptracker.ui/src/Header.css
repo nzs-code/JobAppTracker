@@ -1,0 +1,20 @@
+/* Full-width header background */
+.app-header {
+    width: 100%;
+    background-color: #fff;  /* or whatever background color you need */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Inner container with constrained width */
+  .header-inner {
+    max-width: clamp(300px, 50vw, 600px);
+    margin: 0 auto;
+    padding: 10px 20px;
+    text-align: left;
+  }
+    
+  .logo {
+    height: 26px; /* Adjust as needed */
+    width: auto;
+  }
+  

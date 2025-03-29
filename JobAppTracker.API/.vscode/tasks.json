@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Build Backend",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+          "build",
+          "${workspaceFolder}/JobAppTracker.API.csproj", //JobAppTracker.API
+          "--nologo",
+          "/property:GenerateFullPaths=true",
+          "/consoleloggerparameters:NoSummary"
+        ],
+        "problemMatcher": "$msCompile",
+        "options": {
+          "cwd": "${workspaceFolder}" //JobAppTracker.API
+        }
+      }
+    ]
+  }
+  
