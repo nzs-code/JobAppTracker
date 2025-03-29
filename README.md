@@ -14,6 +14,8 @@ and view details like company name, position, application status, and date appli
     - GET /applications - Retrieve all job applications.
     - GET /applications/{id} - Retrieve a specific application.
     - POST /applications - Add a new application.
+    - PUT /applications/{id}/status - Update the status of an application.
+    - DELETE /applications/{id} - Delete a specific application.
   - Built with ASP.NET Core Web API.
   - Use Entity Framework Core (Code First) with SQLite to store data.
   - Implements Repository Pattern and Dependency Injection.
@@ -24,7 +26,7 @@ and view details like company name, position, application status, and date appli
   - Has a simple UI that allows users to:
     - List all job applications.
     - Add a new application.
-    - Update an application (e.g., update status to Interview/Offer/Rejected).
+    - Update an application (e.g., update status to Applied/Interview/Offer/Rejected).
   - Utilizes Axios for API communication.
   - Displays a table with the following columns:
     - Company Name
@@ -39,56 +41,100 @@ and view details like company name, position, application status, and date appli
 
 ### Prerequsities
 
-- [.NET 8 SDK LTS]
-- [ReactJS v19]
-- [Visual Studio Code]
+- [.NET 8.0.407 SDK LTS] (https://dotnet.microsoft.com/download/dotnet/8.0)
+- [ReactJS v19] (https://reactjs.org/)
+- [Visual Studio Code] (https://code.visualstudio.com/)
+- [Node JS LTS v22.14] (https://nodejs.org/en/download)
 
-### Installation instructions
+## Installation Instructions
 
-#### Backend Setup
+### Prepare Files
 
-1. **Navigate to the Backend Folder:**
+1. **Unpack the provided .zip file in your desired location.**
+
+### Backend Setup
+
+1. **Open a terminal in the unpacked .zip files root folder:**
+
+2. **Navigate to the JobAppTracker.API Folder:**
    ```bash
-   cd JobAppTracker/Backend
-2. **Restore Dependencies:**
+   cd ./JobAppTracker.API
+3. **Restore Dependencies:**
    ```bash
    dotnet restore
-3. **Install Required Packages**
+4. **Install Required Packages**
    ```bash
    dotnet add package Microsoft.EntityFrameworkCore.Sqlite
    dotnet add package Microsoft.EntityFrameworkCore.Tools
    dotnet add package Swashbuckle.AspNetCore
-4. **Apply Database Migrations:**
+5. **Apply Database Migrations:**
    ```bash
    dotnet ef migrations add InitialCreate
    dotnet ef database update
-5. **Run the API:**
-   ```bash
-   dotnet run
-
-The API will run on https://localhost:5001.
-Swagger Documentation will run on https://localhost:5001/swagger.
 
 #### Frontend Setup
 
-1. Navigate to the Frontend Folder:
+1. **Open a terminal in the unpacked .zip files root folder.**
+
+2. **Navigate to the jobapptracker.ui folder:**
    ```bash
-   cd JobAppTracker/Frontend
-2. Install Dependencies:
+   cd ./jobapptracker.ui
+3. Install Dependencies:
    ```bash
    npm install
-3. Install Axios for API Communication:
+4. Install Axios for API Communication:
    ```bash
    npm install axios
-4. Start the Development Server:
+5. Start the Development Server:
    ```bash
    npm start
 
+
+## How to Run
+
+### Backend
+
+1. **Open a terminal and navigate to the JobAppTracker.API Folder:**
+   ```bash
+   cd ./JobAppTracker.API
+
+2. **Run the API:**
+   ```bash
+   dotnet run
+
+3. **Access the API or Swagger UI:**
+   The API will run on https://localhost:5001.
+   Swagger API Documentation will run on https://localhost:5001/swagger.
+
+### Frontend
+
+1. **Open a terminal in the unpacked .zip files root folder.**
+
+2. **Navigate to the jobapptracker.ui folder:**
+   ```bash
+   cd ./jobapptracker.ui
+
+3. **Run the Frontend:**
+   ```bash
+   npm start
+
+4. **Access the Frontend:**
 The Frontend will run on http://localhost:3000.
+
+### Assumptions:
+
++ CORS is configured to allow calls from http://localhost:3000.
++ A PUT endpoint (/applications/{id}/status) was required to update the application status.
++ A DELETE endpoint was required to allow removal of job applications.
++ The frontend table automatically refreshes after adding or editing an application.
++ Logging is implemented throughout the repository for error handling and troubleshooting.
++ The "Date Applied" field accepts dates only between two years ago and today, and displays the date in DD/MM/YYYY format.
 
 ### NOTES:
 
-+ None yet
++ If you get Certificate errors like: Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID please use the following command in the dotnet project
+  ```bash
+  dotnet dev-certs https --trust
 
 License
 
