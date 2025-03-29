@@ -98,10 +98,6 @@ and view details like company name, position, application status, and date appli
 4. Install Axios for API Communication:
    ```bash
    npm install axios
-5. Start the Development Server:
-   ```bash
-   npm start
-
 
 ## How to Run
 
