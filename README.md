@@ -22,11 +22,11 @@ and view details like company name, position, application status, and date appli
   - Implements Swagger UI for API documentation
 
 - **Frontend**
-  - User Interface which is built with ReactJS v19
+  - User Interface is built with ReactJS v19
   - Has a simple UI that allows users to:
     - List all job applications.
     - Add a new application.
-    - Update an application (e.g., update status to Applied/Interview/Offer/Rejected).
+    - Update an application (e.g. Update status to Applied/Interview/Offer/Rejected).
   - Utilizes Axios for API communication.
   - Displays a table with the following columns:
     - Company Name
@@ -34,17 +34,17 @@ and view details like company name, position, application status, and date appli
     - Status
     - Date Applied
     - Actions (Edit)
-    - Implements a dropdown menu for updating job status.
-    - Features pagination for the table.
+  - Implements a dropdown menu for updating job status.
+  - Features pagination for the table.
 
 ## Getting started
 
 ### Prerequsities
 
 - [.NET 8.0.407 SDK LTS] (https://dotnet.microsoft.com/download/dotnet/8.0)
+- [Node JS LTS v22.14] (https://nodejs.org/en/download)
 - [ReactJS v19] (https://reactjs.org/)
 - [Visual Studio Code] (https://code.visualstudio.com/)
-- [Node JS LTS v22.14] (https://nodejs.org/en/download)
 
 ## Installation Instructions
 
@@ -62,14 +62,27 @@ and view details like company name, position, application status, and date appli
 3. **Restore Dependencies:**
    ```bash
    dotnet restore
-4. **Install Required Packages**
+4. **Install Required NuGet Packages**
    ```bash
    dotnet add package Microsoft.EntityFrameworkCore.Sqlite
    dotnet add package Microsoft.EntityFrameworkCore.Tools
    dotnet add package Swashbuckle.AspNetCore
-5. **Apply Database Migrations:**
+5. **Install EF CLI globally (if not already installed):**
+   ```bash
+   dotnet tool install --global dotnet-ef
+   note: Restart the terminal after this command before continuing.
+6. **Trust HTTPS Development Certificate:**
+   ```bash
+   dotnet dev-certs https --trust
+   notes:
+   +  If prompted, allow the certificate to be trusted. 
+   +  After running, restart Chrome for the trust to take effect.
+7. **Apply Database Migrations:**
    ```bash
    dotnet ef migrations add InitialCreate
+   note: If InitialCreate has already been used, choose a different name
+8. **Update the Database:**
+   ```bash
    dotnet ef database update
 
 #### Frontend Setup
@@ -94,7 +107,7 @@ and view details like company name, position, application status, and date appli
 
 ### Backend
 
-1. **Open a terminal and navigate to the JobAppTracker.API Folder:**
+1. **Open a terminal and navigate to the API folder:**
    ```bash
    cd ./JobAppTracker.API
 
@@ -108,17 +121,15 @@ and view details like company name, position, application status, and date appli
 
 ### Frontend
 
-1. **Open a terminal in the unpacked .zip files root folder.**
-
-2. **Navigate to the jobapptracker.ui folder:**
+1. **Open a terminal and navigate to the UI folder:**
    ```bash
    cd ./jobapptracker.ui
 
-3. **Run the Frontend:**
+2. **Run the Frontend:**
    ```bash
    npm start
 
-4. **Access the Frontend:**
+3. **Access the Frontend:**
 The Frontend will run on http://localhost:3000.
 
 ### Assumptions:
@@ -129,12 +140,6 @@ The Frontend will run on http://localhost:3000.
 + The frontend table automatically refreshes after adding or editing an application.
 + Logging is implemented throughout the repository for error handling and troubleshooting.
 + The "Date Applied" field accepts dates only between two years ago and today, and displays the date in DD/MM/YYYY format.
-
-### NOTES:
-
-+ If you get Certificate errors like: Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID please use the following command in the dotnet project
-  ```bash
-  dotnet dev-certs https --trust
 
 License
 
