@@ -2,18 +2,31 @@ import React, { useState } from 'react';
 import JobApplicationEdit from './JobApplicationEdit';
 import './JobApplicationPage.css';
 
+
+// Functional Component
+// Props: applications, onApplicationEdited (callback to refresh applications)
 const JobApplicationList = ({ applications, onApplicationEdited }) => {
 
+    // States for pagination and editing of the table
     const [editingApp, setEditingApp] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [applicationsPerPage] = useState(4);
 
+    // EVENT HANDLER FUNCTION: handleEdit
+    // - Activates edit mode by setting 'editingApp' to the selected application.
     const handleEdit = (app) => setEditingApp(app);
+    
+    // EVENT HANDLER FUNCTION: handleUpdate
+    // - Called after an application is updated.
+    // - Invokes the 'onApplicationEdited' callback to refresh the list.
+    // - Exits edit mode by resetting 'editingApp' to null.
     const handleUpdate = () => {
         if (onApplicationEdited) onApplicationEdited();
         setEditingApp(null);
     };
 
+    // Helper function: formatDate
+    // Formats a date string to 'dd/mm/yyyy'
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
         const day = String(date.getDate()).padStart(2, '0');
@@ -21,13 +34,16 @@ const JobApplicationList = ({ applications, onApplicationEdited }) => {
         const year = date.getFullYear();
         return `${day}/${month}/${year}`;
       };
-      
+    
+    // Calculate pagination indices
     const indexLastJobApplication = currentPage * applicationsPerPage;
     const indexFirstJobApplication = indexLastJobApplication - applicationsPerPage;
 
     const currentApplications = applications.slice(indexFirstJobApplication, indexLastJobApplication);
     const totalNumPages = Math.ceil(applications.length / applicationsPerPage); 
 
+    // EVENT HANDLER FUNCTION: handlePageChange
+    // Updates the current page when a pagination button is clicked.
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
@@ -59,7 +75,7 @@ const JobApplicationList = ({ applications, onApplicationEdited }) => {
                 ))}
             </tbody>
             </table>
-
+            {/* Pagination Controls */}
             <div className="pagination">
                 {Array.from({ length: totalNumPages }, (_, i) => i + 1).map(number => (
                     <button
@@ -71,7 +87,7 @@ const JobApplicationList = ({ applications, onApplicationEdited }) => {
                     </button>
                 ))}
             </div>
-
+            {/* Render the JobApplicationEdit component if an application is being edited */}
             {editingApp && (
                 <JobApplicationEdit
                     application={editingApp}
